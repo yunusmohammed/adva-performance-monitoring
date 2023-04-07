@@ -4,7 +4,7 @@ The performance monitoring data at some instant
 
 
 class InstantaneousPMData:
-    def __init__(self, power: float, ber: float, snr: float, dgd: float, qfactor: float, chromatic_dispersion: float, carrier_offset: float):
+    def __init__(self, power: float, ber: float, snr: float, dgd: float, qfactor: float, chromatic_dispersion: float, carrier_offset: float) -> None:
         """
         power: the instantaneous power levels
         ber: the instantaneous bit error rate
