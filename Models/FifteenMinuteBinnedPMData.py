@@ -1,10 +1,10 @@
 """
 The performance monitoring data of a 15-minute bin
 """
-import FifteenMinuteBinnedProperty
+from models.FifteenMinuteBinnedProperty import FifteenMinuteBinnedProperty
 
 
-class InstantaneousPMData:
+class FifteenMinuteBinnedPMData:
     def __init__(self, power: FifteenMinuteBinnedProperty, ber: FifteenMinuteBinnedProperty, snr: FifteenMinuteBinnedProperty, dgd: FifteenMinuteBinnedProperty, qfactor: FifteenMinuteBinnedProperty, chromatic_dispersion: FifteenMinuteBinnedProperty, carrier_offset: FifteenMinuteBinnedProperty) -> None:
         """
         power: summary of the power levels of a 15-minute bin

@@ -1,8 +1,8 @@
 """
 Performance Monitoring Data. Contains both instantaneous data and summary statistics of the data within the last 15 minutes of the instant
 """
-import InstantaneousPMData
-import FifteenMinuteBinnedPMData
+from models.InstantaneousPMData import InstantaneousPMData
+from models.FifteenMinuteBinnedPMData import FifteenMinuteBinnedPMData
 
 
 class PMData:
