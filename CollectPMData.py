@@ -128,9 +128,11 @@ def get_pmdata(host, port_id, port_speed) -> PMData:
 current_utc_time = datetime.utcnow()
 script_dir = Path(__file__).resolve().parent
 
-output_file: Path = script_dir / \
-    Path('output/' + str(current_utc_time.date()) + '.json')
-config_file: Path = script_dir / Path('config/ADVA_powerlevels.json')
+print(f"PM Data Collection triggered at {current_utc_time}")
+
+output_file: Path = script_dir / 'output' / \
+    (str(current_utc_time.date()) + '.json')
+config_file: Path = script_dir / 'config' / 'ADVA_powerlevels.json'
 time_stamp: str = str(current_utc_time.timestamp())
 
 # Turn off warnings for unvalidated HTTPS connections
@@ -175,3 +177,5 @@ file_data.update(jsonEntry)
 with open(output_file, 'w+') as file:
     file.seek(0)
     json.dump(file_data, file)
+
+print(f"Data Collected Successfully")
