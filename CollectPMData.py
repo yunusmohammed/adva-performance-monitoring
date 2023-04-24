@@ -1,9 +1,9 @@
 """
 CollectPMData.py - monitor ADVA optical power, BER and
-                      SNR levels and send a status email
+                      SNR levels and save it to ./output/{today's utc date}.json
 """
 
-from datetime import datetime
+from datetime import datetime, timedelta
 import requests
 import json
 import urllib3
@@ -12,6 +12,7 @@ from models.InstantaneousPMData import InstantaneousPMData
 from models.FifteenMinuteBinnedPMData import FifteenMinuteBinnedPMData
 from models.FifteenMinuteBinnedProperty import FifteenMinuteBinnedProperty
 from pathlib import Path
+import os
 
 requests.packages.urllib3.disable_warnings(
     requests.packages.urllib3.exceptions.InsecureRequestWarning)
@@ -162,6 +163,12 @@ file_data = {}
 if output_file.is_file():
     with open(output_file.absolute(), 'r+') as file:
         file_data = json.load(file)
+else:
+    # Schedule a job to delete the output file after 30 days using the `at` command
+    delete_date = datetime.now() + timedelta(days=30)
+    delete_date_str = delete_date.strftime('%H:%M %m/%d/%y')
+    os.system(
+        f"echo 'rm {str(output_file)}' | at {delete_date_str}")
 
 file_data.update(jsonEntry)
 
